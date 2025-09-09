@@ -1,0 +1,36 @@
+# Visual Studio / ASP.NET Core / .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+
+# Build results
+*.dll
+*.exe
+*.log
+*.vspscc
+*.vssscc
+
+# Rider
+.idea/
+
+# User Secrets
+secrets.json
+
+# EF Migrations / Database
+Migrations/
+*.db
+
+# Publish outputs
+wwwroot/
+*.publishsettings

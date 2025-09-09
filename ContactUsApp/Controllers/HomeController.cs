@@ -1,32 +1,30 @@
-using System.Diagnostics;
-using ContactUsApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using ContactUsApp.Data;
+using System.Linq;
 
 namespace ContactUsApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
+        [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
-        }
+            // DB theke sob contact messages fetch
+            var allContacts = _context.Contacts
+                                      .OrderByDescending(c => c.Id)
+                                      .ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            // View e pass kora
+            ViewBag.AllContacts = allContacts;
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }
